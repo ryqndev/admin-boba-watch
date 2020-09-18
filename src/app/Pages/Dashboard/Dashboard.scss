@@ -1,0 +1,9 @@
+.dash-wrapper{
+    padding: 20px;
+    & .card{
+        float: left;
+        max-width: 400px;
+        box-shadow: 0 0 5px black;
+        padding: 20px;
+    }
+}

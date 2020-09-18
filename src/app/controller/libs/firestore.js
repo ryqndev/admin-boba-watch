@@ -4,7 +4,14 @@ import 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 
 const firebaseConfig = {
-    //paste config here
+    apiKey: "AIzaSyBePNJQYVteyh1Ll9fqnXbXc-S8fmJlbTQ",
+    authDomain: "boba-watch-firebase.firebaseapp.com",
+    databaseURL: "https://boba-watch-firebase.firebaseio.com",
+    projectId: "boba-watch-firebase",
+    storageBucket: "boba-watch-firebase.appspot.com",
+    messagingSenderId: "674375234614",
+    appId: "1:674375234614:web:fdaf98c291204b9c",
+    measurementId: "G-C2DYVHCWDR"
 };
 firebase.initializeApp(firebaseConfig);
 
@@ -12,7 +19,6 @@ let database, ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.A
 
 database = firebase.firestore(); 
 database.enablePersistence().catch(err => {console.error(err)});
-
 
 let login = (callback) => {
     firebase.auth().onAuthStateChanged(user => {
@@ -27,10 +33,9 @@ const logout = () => {
         localStorage.clear();
         localStorage.setItem('theme', theme);
         window.location.reload();
-    }).catch(err => {
-        console.error(err)
-    });      
+    }).catch(console.error);      
 }
+window.logout = logout;
 export {
     ui,
     firebase,

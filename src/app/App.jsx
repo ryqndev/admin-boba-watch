@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom';
 import {CSSTransition} from 'react-transition-group';
 import AuthUserContext from './controller/contexts/AuthUserContext';
-import firestore from './controller/libs/firestore';
-import Login from './Pages/Login';
-import Home from './Pages/Home';
-import About from './Pages/About';
+import {login} from './controller/libs/firestore';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import About from './pages/About';
 import './styles/main.scss';
+import Theme from './controller/theme/theme';
 
 const Start = ({history}) => {
     const [authUser, setAuthUser] = useState();
     useEffect(() => {
-        firestore.init(user => {
+        Theme();
+        login(user => {
             setAuthUser(user);
             history.push(user ? '/app' : '/login');
         });
@@ -44,7 +46,7 @@ const App = () => {
 	return (
 		<Router basename={process.env.PUBLIC_URL}>
 			<Page path="/">
-				<Home />
+				<Dashboard />
 			</Page>
 			<Page path="/about">
 				<About />
